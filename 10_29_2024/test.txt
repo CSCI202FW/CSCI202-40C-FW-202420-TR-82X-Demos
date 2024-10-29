@@ -1,0 +1,7 @@
+apple, orange, banana, grape, mango, pineapple, strawberry, watermelon, cherry, peach
+Name	Age	City	Occupation
+John Doe	28	New York	Engineer
+Jane Smith	34	Los Angeles	Designer
+Tom Brown	22	Chicago	Student
+Lucy Green	29	Houston	Teacher
+Mark Black	41	Phoenix	Doctor
