@@ -8,7 +8,7 @@
 int main()
 {
     // lecture activity create a regular expression to divide up a tab-separated string
-    // change the loop to check parse a tab separated string.
+    // change the loop to parse a tab-separated string.
     std::regex commaStr{R"(((?:\w+\s*)+(?=,|$)))"};
     std::regex tabStr{};
     std::ifstream in("test.txt");
