@@ -54,6 +54,9 @@
         "variant": "cpp",
         "unordered_set": "cpp",
         "fstream": "cpp",
-        "cinttypes": "cpp"
+        "cinttypes": "cpp",
+        "cstring": "cpp",
+        "bitset": "cpp",
+        "regex": "cpp"
     }
 }
