@@ -12,19 +12,48 @@ std::string getIcing();
 std::string getTopping(std::string);
 std::string getDrizzle();
 
-//lecture activity create ordered linked list
+// lecture activity create ordered linked list
 
 int main()
 {
-    unorderedLinkedList<int> intList;
-    intList = intList;
+    unorderedLinkedList<Donut> order;
+    unorderedLinkedList<Donut> orderRev(unorderedLinkedList<Donut>::BACKWARD);
+
     std::string ice;
     std::string top;
     std::string driz;
+    while (true)
+    {
+        ice = getIcing();
+        top = getTopping(ice);
+        driz = getDrizzle();
+        try
+        {
+            Donut *d = new Donut(ice, top, driz);
+            order.insert(*d);
+            orderRev.insert(*d);
+            delete d;
+        }
+        catch (std::invalid_argument e)
+        {
+            std::cout << e.what();
+            break;
+        }
 
-    ice = getIcing();
-    top = getTopping(ice);
-    driz = getDrizzle();
+        char again = 'Y';
+        std::cout << "Would you like to order more donuts (Y or N)? ";
+        std::cin >> again;
+        again = toupper(again);
+        if (again == 'N')
+        {
+            break;
+        }
+    }
+    std::cout << std::endl;
+    order.print(std::cout, "\n");
+    std::cout << std::endl;
+    orderRev.print(std::cout, "\n\n");
+    std::cout << std::endl;
 
     return 0;
 }

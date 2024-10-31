@@ -30,7 +30,7 @@ std::map<Donut::drizzleType, std::string> Donut::drizzleToStr = {{CARAMELDRIZZLE
                                                                  {RASPBERRY, "Raspberry"},
                                                                  {SPECIALDRIZZLE, "Special"},
                                                                  {NODRIZZLE, "None"}};
-std::map<std::string, Donut::toppingType> Donut::strToTop = {{"rainbow sprinkles", RAINBOWSPR}, {"chocolate sprinkles", CHOCOLATESPR}, {"peanuts", PEANUTS}, {"coconut", COCONUT}, {"oreo", OREO}, {"bacon", BACON}, {"graham cracker", GRAHAM}, {"fruity pebbles", FRUITYPEBBLES}, {"reese's pieces", REESESPIECES}, {"m&ms", MMS}, {"candy bar", CANDYBAR}, {"chocolate chips", CHOCOLATECHIPS}, {"sea salt", SEASALT}, {"cinnamon sugar", CINSUGAR}, {"powdered sugar", POWDSUGAR}, {"none", NOTOP}};
+std::map<std::string, Donut::toppingType> Donut::strToTop = {{"rainbow sprinkles", RAINBOWSPR}, {"chocolate sprinkles", CHOCOLATESPR}, {"peanuts", PEANUTS}, {"coconut", COCONUT}, {"oreo", OREO}, {"bacon", BACON}, {"graham cracker", GRAHAM}, {"fruity pebbles", FRUITYPEBBLES}, {"reeses pieces", REESESPIECES}, {"m&ms", MMS}, {"candy bar", CANDYBAR}, {"chocolate chips", CHOCOLATECHIPS}, {"sea salt", SEASALT}, {"cinnamon sugar", CINSUGAR}, {"powdered sugar", POWDSUGAR}, {"none", NOTOP}};
 std::map<std::string, Donut::icingType> Donut::strToIce = {{"chocolate", CHOCOLATEICING},
                                                            {"caramel", CARAMELICING},
                                                            {"maple", MAPLE},
@@ -117,3 +117,28 @@ std::ostream &operator<<(std::ostream &out, const Donut &d)
 Donut::icingType Donut::getIcing() const { return icing; }
 Donut::toppingType Donut::getTopping() const { return topping; }
 Donut::drizzleType Donut::getDrizzle() const { return drizzle; }
+
+bool Donut::operator>(const Donut &right) const
+{
+    return false;
+}
+bool Donut::operator<(const Donut &right) const
+{
+    return false;
+}
+bool Donut::operator>=(const Donut &right) const
+{
+    return *this == right;
+}
+bool Donut::operator<=(const Donut &right) const
+{
+    return *this == right;
+}
+bool Donut::operator==(const Donut &right) const
+{
+    return this->topping == right.topping && this->drizzle == right.drizzle && this->icing == right.icing;
+}
+bool Donut::operator!=(const Donut &right) const
+{
+    return !(*this == right);
+}
