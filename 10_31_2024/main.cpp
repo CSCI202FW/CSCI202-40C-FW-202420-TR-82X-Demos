@@ -4,6 +4,7 @@
 #include <cctype>
 #include <stdexcept>
 #include "donut.h"
+#include "linkedList.h"
 
 void resetStream();
 void codeGradeLoopFix(std::string errLocation);
@@ -13,7 +14,8 @@ std::string getDrizzle();
 
 int main()
 {
-
+    linkedListType<int> intList;
+    intList = intList;
     std::string ice;
     std::string top;
     std::string driz;
