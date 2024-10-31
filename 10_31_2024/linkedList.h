@@ -4,6 +4,7 @@
 #include <iostream>
 #include <stdexcept>
 #include "node.h"
+#include "linkedListIterator.h"
 template <class t>
 class linkedListType
 {
@@ -16,6 +17,13 @@ public:
     bool isEmptyList() const;
     int length() const;
     void print(std::ostream &, std::string = " ") const;
+    t *front() const;
+    t *back() const;
+    virtual void insert(const t &newInfo) = 0;
+    virtual void deleteNode(const t &deleteItem) = 0;
+    virtual bool search(const t &searchItem) const = 0;
+    linkedListIterator<t> begin();
+    linkedListIterator<t> end();
 
 protected:
     node<t> *head;
@@ -85,6 +93,48 @@ template <class t>
 int linkedListType<t>::length() const
 {
     return count;
+}
+template <class t>
+void linkedListType<t>::print(std::ostream &out, std::string sep) const
+{
+    if (!isEmptyList())
+    {
+        node<t> *current;
+        current = head;
+        while (current != nullptr)
+        {
+            out << *(current->data) << sep;
+            current = current->link;
+        }
+    }
+}
+template <class t>
+t *linkedListType<t>::front() const
+{
+    if (isEmptyList())
+    {
+        throw std::out_of_range("Cannot get first item of an empty list");
+    }
+    return head->data;
+}
+template <class t>
+t *linkedListType<t>::back() const
+{
+    if (isEmptyList())
+    {
+        throw std::out_of_range("Cannot get last item of an empty list");
+    }
+    return tail->data;
+}
+template <class t>
+linkedListIterator<t> linkedListType<t>::begin()
+{
+    return linkedListIterator<t>(head);
+}
+template <class t>
+linkedListIterator<t> linkedListType<t>::end()
+{
+    return linkedListIterator<t>();
 }
 template <class t>
 void linkedListType<t>::copyList(const linkedListType<t> &fromList)

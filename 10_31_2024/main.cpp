@@ -4,7 +4,7 @@
 #include <cctype>
 #include <stdexcept>
 #include "donut.h"
-#include "linkedList.h"
+#include "unorderedLinkedList.h"
 
 void resetStream();
 void codeGradeLoopFix(std::string errLocation);
@@ -12,9 +12,11 @@ std::string getIcing();
 std::string getTopping(std::string);
 std::string getDrizzle();
 
+//lecture activity create ordered linked list
+
 int main()
 {
-    linkedListType<int> intList;
+    unorderedLinkedList<int> intList;
     intList = intList;
     std::string ice;
     std::string top;

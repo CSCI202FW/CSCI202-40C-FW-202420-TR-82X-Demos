@@ -62,6 +62,12 @@ public:
     void setTopping(std::string);
     void setDrizzle(std::string);
     friend std::ostream &operator<<(std::ostream &, const Donut &);
+    bool operator>(const Donut &);
+    bool operator<(const Donut &);
+    bool operator>=(const Donut &);
+    bool operator<=(const Donut &);
+    bool operator==(const Donut &);
+    bool operator!=(const Donut &);
 
 private:
     toppingType topping;
