@@ -103,7 +103,7 @@ t linkedStack<t>::top() const
 template <class t>
 t linkedStack<t>::pop()
 {
-    node *temp;
+    node<t> *temp;
     if (isEmptyStack())
         throw std::underflow_error("Stack underflow. Cannot remove from an empty stack.");
     t copyT(*(stackTop->data));
