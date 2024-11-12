@@ -18,6 +18,7 @@ bool numInRange(t, t, t);
 template <class t>
 bool numGT0(t, t = 0, t = 0);
 long fibNum(long f[], long n);
+void moveDisks(int, char source, char destination, char spare);
 
 int main()
 {
@@ -36,6 +37,8 @@ int main()
     fibseq[0] = fibNum1;
     fibseq[1] = fibNum2;
     std::cout << "The " << nthFibonacci << " th Fibonacci number is " << fibNum(fibseq, nthFibonacci);
+
+    moveDisks(3, 'A', 'B', 'C');
 
     return 0;
 }
@@ -60,6 +63,16 @@ long fibNum(long f[], long n)
     }
     f[n - 1] = fibNum(f, n - 1) + fibNum(f, n - 2);
     return f[n - 1];
+}
+
+void moveDisks(int count, char source, char destination, char spare)
+{
+    if (count > 0)
+    {
+        moveDisks(count - 1, source, spare, destination);
+        std::cout << "Move disk " << count << " from " << source << " to " << destination << "." << std::endl;
+        moveDisks(count - 1, spare, destination, source);
+    }
 }
 
 void resetStream()
