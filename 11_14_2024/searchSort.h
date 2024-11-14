@@ -27,6 +27,33 @@ linkedListIterator<t> seqSearch(unorderedLinkedList<t> &list, const t &item)
     }
 }
 
+template <class elemType>
+int binarySearch(const elemType list[], int length, const elemType &item, int &comp, int first, int last)
+{
+    if (last < first)
+        return -1;
+    int mid;
+    // bool found = false;
+    // comp = 0;
+    mid = (first + last) / 2;
+    if (list[mid] == item)
+    {
+        comp++;
+        return mid;
+    }
+    else if (list[mid] > item)
+    {
+        comp++;
+        return binarySearch(list, length, item, comp, first, mid - 1);
+    }
+    else if (list[mid] < item)
+    {
+        comp++;
+        return binarySearch(list, length, item, comp, mid + 1, last);
+    }
+    return -1;
+}
+
 /*************************Sort Algorithms************************** */
 
 template <class t>
