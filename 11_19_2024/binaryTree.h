@@ -10,10 +10,10 @@ struct binaryNode
     binaryNode<t> *left;
     binaryNode<t> *right;
     ~binaryNode() { delete data; };
-    t operator*()
-    {
-        return *data;
-    };
+    /*  t &operator*()
+     {
+         return *data;
+     }; */
 };
 
 template <class t>
@@ -32,7 +32,7 @@ public:
     int treeLeavesCount() const;
     ~binaryTree();
     virtual void insert(const t &insertItem) = 0;
-    virtual bool search(const t &searchItem) const = 0;
+    virtual bool search(const t &searchItem) = 0;
     virtual void deleteNode(const t &deleteItem) = 0;
 
 protected:
@@ -133,12 +133,14 @@ std::string binaryTree<t>::inorderTraversal() const
 template <class t>
 void binaryTree<t>::inorder(binaryNode<t> *currentNode, std::ostringstream &out) const
 {
+    if (currentNode == nullptr)
+        return;
     // visit left tree
-    inorder(currentNode->left);
+    inorder(currentNode->left, out);
     // visit current node
-    out << *currentNode << std::endl;
+    out << *currentNode->data << std::endl;
     // visit right tree
-    inorder(currentNode->right);
+    inorder(currentNode->right, out);
 }
 
 template <class t>
@@ -152,12 +154,14 @@ std::string binaryTree<t>::preorderTraversal() const
 template <class t>
 void binaryTree<t>::preorder(binaryNode<t> *currentNode, std::ostringstream &out) const
 {
+    if (currentNode == nullptr)
+        return;
     // visit the node
-    out << *currentNode << std::endl;
+    out << *currentNode->data << std::endl;
     // visit the left tree
-    preorder(currentNode->left);
+    preorder(currentNode->left, out);
     // visit the right tree
-    preorder(currentNode->right);
+    preorder(currentNode->right, out);
 }
 
 template <class t>
@@ -171,12 +175,14 @@ std::string binaryTree<t>::postOrderTraversal() const
 template <class t>
 void binaryTree<t>::postorder(binaryNode<t> *currentNode, std::ostringstream &out) const
 {
+    if (currentNode == nullptr)
+        return;
     // visit left
-    postorder(currentNode->left);
+    postorder(currentNode->left, out);
     // visit right
-    postorder(currentNode->right);
+    postorder(currentNode->right, out);
     // visit current
-    out << *currentNode << std::endl;
+    out << *currentNode->data << std::endl;
 }
 
 template <class t>
@@ -229,13 +235,18 @@ int binaryTree<t>::treeheight() const
 template <class t>
 int binaryTree<t>::treeNodeCount() const
 {
-    return nodeCount(searchItem, root);
+    return nodeCount(root);
 }
 
 template <class t>
 int binaryTree<t>::treeLeavesCount() const
 {
-    return leavesCount(searchItem, root);
+    return leavesCount(root);
+}
+template <class t>
+binaryNode<t> *&binaryTree<t>::getRoot()
+{
+    return this->root;
 }
 
 #endif
