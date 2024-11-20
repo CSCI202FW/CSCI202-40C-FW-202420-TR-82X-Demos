@@ -10,10 +10,10 @@ struct binaryNode
     binaryNode<t> *left;
     binaryNode<t> *right;
     ~binaryNode() { delete data; };
-    /*  t &operator*()
-     {
-         return *data;
-     }; */
+    t &operator*()
+    {
+        return *data;
+    };
 };
 
 template <class t>
@@ -86,7 +86,7 @@ void binaryTree<t>::copyTree(binaryNode<t> *&copiedTreeRoot, binaryNode<t> *othe
     else
     {
         copiedTreeRoot = new binaryNode<t>;
-        copiedTreeRoot->data = new t(otherTreeRoot->data);
+        copiedTreeRoot->data = new t(*otherTreeRoot->data);
         copyTree(copiedTreeRoot->left, otherTreeRoot->left);
         copyTree(copiedTreeRoot->right, otherTreeRoot->right);
     }
@@ -138,7 +138,7 @@ void binaryTree<t>::inorder(binaryNode<t> *currentNode, std::ostringstream &out)
     // visit left tree
     inorder(currentNode->left, out);
     // visit current node
-    out << *currentNode->data << std::endl;
+    out << *(*currentNode) << std::endl;
     // visit right tree
     inorder(currentNode->right, out);
 }
@@ -157,7 +157,7 @@ void binaryTree<t>::preorder(binaryNode<t> *currentNode, std::ostringstream &out
     if (currentNode == nullptr)
         return;
     // visit the node
-    out << *currentNode->data << std::endl;
+    out << *(*currentNode) << std::endl;
     // visit the left tree
     preorder(currentNode->left, out);
     // visit the right tree
@@ -182,7 +182,7 @@ void binaryTree<t>::postorder(binaryNode<t> *currentNode, std::ostringstream &ou
     // visit right
     postorder(currentNode->right, out);
     // visit current
-    out << *currentNode->data << std::endl;
+    out << currentNode->operator*() << std::endl;
 }
 
 template <class t>

@@ -45,7 +45,7 @@ void binarySearchTree<t>::insert(binaryNode<t> *&insertItem, binaryNode<t> *&cur
     }
     else
     {
-        int cmp = compare(*(insertItem->data), *(currentNode->data));
+        int cmp = compare(*(*insertItem), *(*currentNode));
         if (cmp == 0)
         {
             throw std::invalid_argument("The item to be inserted is already in the tree -- duplicates are not allowed");
@@ -74,7 +74,7 @@ bool binarySearchTree<t>::search(const t &searchItem, binaryNode<t> *currentNode
     {
         return false;
     }
-    int cmp = compare(searchItem, *(currentNode->data));
+    int cmp = compare(searchItem, *(*currentNode));
     if (cmp == 0)
     {
         return true;
@@ -104,7 +104,7 @@ void binarySearchTree<t>::deleteNode(const t &deleteItem)
     trailCurrent = current;
     while (current != nullptr && !found)
     {
-        int cmp = compare(deleteItem, *(current->data));
+        int cmp = compare(deleteItem, *(*current));
         if (cmp == 0)
         {
             found = true;
@@ -130,7 +130,7 @@ void binarySearchTree<t>::deleteNode(const t &deleteItem)
     {
         if (current == this->getRoot())
             deleteFromTree(this->getRoot());
-        else if (compare(deleteItem, *(trailCurrent->data)) == -1)
+        else if (compare(deleteItem, *(*trailCurrent)) == -1)
         {
             deleteFromTree(trailCurrent->left);
         }
