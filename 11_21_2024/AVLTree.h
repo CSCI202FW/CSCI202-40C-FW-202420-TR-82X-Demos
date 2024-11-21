@@ -3,12 +3,14 @@
 #include "binarySearchTree.h"
 #include <sstream>
 
+// lecture activity find a sequence of numbers that causes a balancefromright case -1, case -1
+
 template <class t>
 class AVLTree : public binarySearchTree<t>
 {
 public:
     void insert(const t &insertItem);
-    void deleteNode(const t &deleteItem);
+    // void deleteNode(const t &deleteItem); // complete for bonus points (5pts)
     AVLTree(int (*comp)(const t &, const t &));
 
 private:
@@ -46,7 +48,7 @@ void AVLTree<t>::insertIntoAVL(binaryNode<t> *&root, binaryNode<t> *newNode, boo
     }
     else
     {
-        int cmp = compare(**newNode, **root);
+        int cmp = this->compare(**newNode, **root);
         if (cmp == 0)
         {
             throw std::invalid_argument("No duplicates allowed");
@@ -107,7 +109,7 @@ void AVLTree<t>::balanceFromLeft(binaryNode<t> *&currentNode)
     case -1: // left subtree of current node is left high
         currentNode->bfactor = 0;
         lTree->bfactor = 0;
-        rotateToRight(root);
+        rotateToRight(currentNode);
         break;
     case 0:
         throw std::runtime_error("Left subtree is balanced.");
@@ -116,7 +118,7 @@ void AVLTree<t>::balanceFromLeft(binaryNode<t> *&currentNode)
         switch (childRTree->bfactor)
         {
         case -1:
-            currentNode->bfactor = 0;
+            currentNode->bfactor = 1;
             lTree->bfactor = 0;
             break;
         case 0:
@@ -127,8 +129,8 @@ void AVLTree<t>::balanceFromLeft(binaryNode<t> *&currentNode)
             lTree->bfactor = -1;
         }
         childRTree->bfactor = 0;
-        rotateToLeft(lTree);
-        currentNode->left = lTree;
+        rotateToLeft(currentNode->left);
+        // currentNode->left = lTree;
         rotateToRight(currentNode);
     }
 }
@@ -157,7 +159,7 @@ template <class t>
 void AVLTree<t>::balanceFromRight(binaryNode<t> *&currentNode)
 {
     binaryNode<t> *rSubTree;
-    rSubTree = root->right;
+    rSubTree = currentNode->right;
     switch (rSubTree->bfactor)
     {
     case 1:
@@ -186,5 +188,19 @@ void AVLTree<t>::balanceFromRight(binaryNode<t> *&currentNode)
         rotateToRight(currentNode->right);
         rotateToLeft(currentNode);
     }
+}
+
+template <class t>
+void AVLTree<t>::rotateToLeft(binaryNode<t> *&currentNode)
+{
+    binaryNode<t> *newRootNode;
+    if (currentNode == nullptr || currentNode->right == nullptr)
+    {
+        throw std::out_of_range("Cannot rotate empty node.");
+    }
+    newRootNode = currentNode->right;
+    currentNode->right = newRootNode->left;
+    newRootNode->left = currentNode;
+    currentNode = newRootNode;
 }
 #endif
