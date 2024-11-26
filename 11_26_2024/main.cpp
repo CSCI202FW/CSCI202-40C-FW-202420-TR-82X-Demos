@@ -1,7 +1,7 @@
 #include "graph.h"
 #include <iostream>
 #include <fstream>
-// lecture activity add the function connected to the graph class.
+// lecture activity for part B add the function connected to the graph class.
 // the function will return true if the two vertexes are connected
 // it will return false if they are not.
 int main()
