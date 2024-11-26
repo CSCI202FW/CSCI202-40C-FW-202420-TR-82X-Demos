@@ -2,8 +2,10 @@
 #define GRAPH_H
 #include <string>
 #include <fstream>
+#include <sstream>
 #include <stdexcept>
 #include "unorderedLinkedList.h"
+#include "linkedQueue.h"
 
 class graphType
 {
@@ -19,6 +21,8 @@ public:
     std::string depthFirstTraversal();
     std::string dftAtVertex(int vertex);
     std::string breadthFirstTraversal();
+    // add a function
+    bool connected(int, int);
 
 protected:
     int maxSize;
