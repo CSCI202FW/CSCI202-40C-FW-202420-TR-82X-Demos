@@ -57,6 +57,17 @@
         "cinttypes": "cpp",
         "cstring": "cpp",
         "bitset": "cpp",
-        "regex": "cpp"
+        "regex": "cpp",
+        "hash_map": "cpp",
+        "chrono": "cpp",
+        "complex": "cpp",
+        "condition_variable": "cpp",
+        "list": "cpp",
+        "ratio": "cpp",
+        "mutex": "cpp",
+        "semaphore": "cpp",
+        "stop_token": "cpp",
+        "syncstream": "cpp",
+        "thread": "cpp"
     }
 }
