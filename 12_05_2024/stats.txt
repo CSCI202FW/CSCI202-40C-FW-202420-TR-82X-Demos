@@ -1,0 +1,29 @@
+Modulus only
+There were 1878 collisions.
+There were 5000 items inserted.
+
+There were 18319 collisions.
+There were 50000 items inserted.
+
+There were 111038 collisions.
+There were 888962 items inserted.
+
+Mid-Square?
+There were 1929 collisions.
+There were 5000 items inserted.
+
+There were 18803 collisions.
+There were 50000 items inserted.
+
+There were 188644 collisions.
+There were 811356 items inserted.
+
+Folding...
+There were 999704 collisions.
+There were 296 items inserted.
+
+There were 999704 collisions.
+There were 296 items inserted.
+
+There were 989707 collisions.
+There were 10293 items inserted.
