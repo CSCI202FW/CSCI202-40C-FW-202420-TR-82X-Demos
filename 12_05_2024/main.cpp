@@ -19,6 +19,7 @@ int main()
     int ht[HT_SIZE];
     int collisions = 0;
     int count = 0;
+    unsigned long probeCount = 0;
 
     for (int i = 0; i < HT_SIZE; i++)
     {
@@ -36,15 +37,49 @@ int main()
             ht[hashValue] = num;
             count++;
         }
-        else if (ht[hashValue] != num)
+        else
         {
             std::cout << num << " collided with " << ht[hashValue] << std::endl;
             collisions++;
+            bool found = false;
+            // srand(3);
+            int pCount = 0;
+            int i = 1;
+            while (ht[hashValue] != -1 && !found && pCount < HT_SIZE / 2)
+            {
+                if (ht[hashValue] == num)
+                {
+                    found = true;
+                }
+                else
+                {
+                    hashValue = ((hashValue + static_cast<int>(pow(i, 2)))) % HT_SIZE;
+                    probeCount++;
+                    i++;
+                    pCount++;
+                }
+            }
+            if (found)
+            {
+                collisions--;
+                std::cout << "Duplicates are not allowed" << std::endl;
+            }
+            if (pCount >= HT_SIZE / 2)
+            {
+                std::cout << "The table is full." << std::endl;
+                break;
+            }
+            else
+            {
+                ht[hashValue] = num;
+                count++;
+            }
         }
     }
 
     std::cout << "There were " << collisions << " collisions." << std::endl;
     std::cout << "There were " << count << " items inserted." << std::endl;
+    std::cout << "There were " << static_cast<double>(probeCount) / collisions << " average probes per collision." << std::endl;
 }
 
 void setup()
@@ -71,11 +106,11 @@ int hashFunc(int key)
      int x = pow(10, numDigits / 2);
      int location = keySquared / x; */
 
-    int location = 0;
+    /* int location = 0;
     std::vector<int> segments;
     int seg;
     int numDigits = floor(log10(key) + 1);
-    int x = pow(10, numDigits / 2 + 1);
+    int x = pow(10, numDigits / 3);
     if (x < 10)
         x = 10;
     while (key > 0)
@@ -87,7 +122,7 @@ int hashFunc(int key)
     for (int i = 0; i < segments.size(); i++)
     {
         location += segments[i];
-    }
-
-    return location % HT_SIZE;
+    } */
+    std::hash<int> intHash;
+    return intHash(key) % HT_SIZE;
 }

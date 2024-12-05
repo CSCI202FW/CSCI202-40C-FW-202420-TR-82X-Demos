@@ -27,3 +27,26 @@ There were 296 items inserted.
 
 There were 989707 collisions.
 There were 10293 items inserted.
+
+with quadratic probing
+There were 999867 collisions.
+There were 1000000 items inserted.
+There were 3213.02 average probes per collision.
+
+Standard Hash Function
+There were 111038 collisions.
+There were 888962 items inserted.
+
+with linear probing
+There were 144047 collisions.
+There were 855953 items inserted.
+There were 2.32224 average probes per collision.
+
+with random probing
+There were 133889 collisions.
+There were 866111 items inserted.
+There were 1.50215 average probes per collision.
+
+There were 144054 collisions.
+There were 1000000 items inserted.
+There were 1.96262 average probes per collision.
